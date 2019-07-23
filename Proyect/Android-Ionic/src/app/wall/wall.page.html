@@ -10,5 +10,21 @@
 </ion-header>
 
 <ion-content>
-  This is the wall page
+
+  <ion-list style=" height: 300px; overflow: auto">
+    <ion-item *ngFor="let entry of messages">
+
+        <ion-avatar slot="start">
+            <img src="https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-creador-de-avatar-masculino.jpg">
+          </ion-avatar>
+          <ion-label>
+            <h3>{{ entry.user }}</h3>
+            <p>{{ entry.text }}</p>
+          </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-textarea style="background-color:blue;"></ion-textarea>
+  <ion-button color="primary">Send message</ion-button>
+
 </ion-content>

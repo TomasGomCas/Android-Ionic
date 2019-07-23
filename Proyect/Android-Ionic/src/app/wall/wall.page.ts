@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // IMPORTS
 import { HttpClient } from '@angular/common/http';
+import { LoadingController } from '@ionic/angular';
 
 // CLASSES
 import { Message } from '../../classes/message';
@@ -17,42 +18,52 @@ export class WallPage implements OnInit {
   private text:string;
 
   // CONSTRUCTOR
-   constructor(private http:HttpClient) {
+   constructor(private http:HttpClient,public loadingController: LoadingController) {
     this.getAllMessages();
   }
 
   ngOnInit() {
   }
 
-  public getAllMessages(){
+  async getAllMessages(){
+
+    this.loadingController.create({
+        message: 'Loading messages...',
+      }).then(loading => loading.present());
+
     this.http.get("https://curriculum-213a8.firebaseio.com/Muro.json").subscribe(
       (data:any) => {    
-        
         for (const key in data) {
-
             var message = new Message(data[key].user, 
               data[key].text,
               );
-            
             this.messages.push(message); 
         }
+        this.loadingController.dismiss();
        },
        error => {
+        this.loadingController.dismiss();
        }
      );
   }
 
   sendMessage(){
 
+    this.loadingController.create({
+      message: 'Loading messages...',
+    }).then(loading => loading.present());
+
     var message = new Message("Desconocido", 
       this.text
       ); 
     
      this.http.post("https://curriculum-213a8.firebaseio.com/Muro.json",message).subscribe(
-       (data:any) => {    
+       (data:any) => {
+        this.loadingController.dismiss();
          location.reload();   
        },
        error => {
+        this.loadingController.dismiss();
        }
      );
   }

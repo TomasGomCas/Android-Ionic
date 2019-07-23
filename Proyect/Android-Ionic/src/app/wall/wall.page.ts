@@ -14,6 +14,7 @@ export class WallPage implements OnInit {
 
   // ATRIBUTOS
   private messages:Message[] = [];
+  private text:string;
 
   // CONSTRUCTOR
    constructor(private http:HttpClient) {
@@ -35,6 +36,21 @@ export class WallPage implements OnInit {
             
             this.messages.push(message); 
         }
+       },
+       error => {
+       }
+     );
+  }
+
+  sendMessage(){
+
+    var message = new Message("Desconocido", 
+      this.text
+      ); 
+    
+     this.http.post("https://curriculum-213a8.firebaseio.com/Muro.json",message).subscribe(
+       (data:any) => {    
+         location.reload();   
        },
        error => {
        }

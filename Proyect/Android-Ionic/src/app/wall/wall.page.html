@@ -24,7 +24,10 @@
     </ion-item>
   </ion-list>
 
-  <ion-textarea style="background-color:blue;"></ion-textarea>
-  <ion-button color="primary">Send message</ion-button>
+  <ion-card style=" height: 50px">
+    <ion-textarea placeholder="Enter your message here..." [(ngModel)]="text"></ion-textarea>
+  </ion-card>
+
+  <ion-button expand="full" color="primary" (click)="sendMessage()">Send message</ion-button>
 
 </ion-content>

@@ -13,8 +13,8 @@ import { EmailValidator } from '@angular/forms';
 export class LoginPage implements OnInit {
 
   // ATRIBUTES
-  private email:string;
-  private password:string;
+  email:string;
+  password:string;
 
   // CONSTRUCTOR
   constructor(private http:HttpClient,public alertController: AlertController) {
@@ -72,6 +72,24 @@ export class LoginPage implements OnInit {
     }
 
      this.http.post("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD-r8SZYRjU7PT1JiuRDiACavFc2gISoUk ",message).subscribe(
+       (data:any) => {
+        console.log(data);
+       },
+       error => {
+        console.log(error);
+       }
+     );
+  }
+
+  signIn(){
+    
+    const message:JSON = <JSON><unknown>{
+      "email": this.email,
+      "password": this.password,
+      "returnSecureToken": "true",
+    }
+
+     this.http.post("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD-r8SZYRjU7PT1JiuRDiACavFc2gISoUk ",message).subscribe(
        (data:any) => {
         console.log(data);
        },

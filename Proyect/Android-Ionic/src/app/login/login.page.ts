@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 // IMPORTS
 import { AlertController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
-import { EmailValidator } from '@angular/forms';
+// IMPORTS
+import { HttpService } from '../http.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,10 @@ export class LoginPage implements OnInit {
   password:string;
 
   // CONSTRUCTOR
-  constructor(private http:HttpClient,public alertController: AlertController) {
+  constructor(private http:HttpClient,
+              public alertController: AlertController,
+              private auth:HttpService,
+              private router:Router) {
     this.email="";
     this.password="";
   }
@@ -92,6 +97,9 @@ export class LoginPage implements OnInit {
      this.http.post("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD-r8SZYRjU7PT1JiuRDiACavFc2gISoUk ",message).subscribe(
        (data:any) => {
         console.log(data);
+        this.auth.login=true;
+        console.log(this.auth.login);
+        this.router.navigate(['private']);
        },
        error => {
         console.log(error);

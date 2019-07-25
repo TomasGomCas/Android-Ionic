@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 // imports
 import { HttpClientModule } from '@angular/common/http'
-
+import { HttpService } from '../app/http.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,14 +20,20 @@ import { HttpClientModule } from '@angular/common/http'
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    //HttpService
   ],
   providers: [
     StatusBar,
     SplashScreen,
     HttpClientModule,
+    //HttpService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+
+
+
+}

@@ -19,6 +19,11 @@ export class AppComponent {
       title: 'Wall',
       url: '/wall',
       icon: 'browsers'
+    },
+    {
+      title: 'Private zone',
+      url: '/private',
+      icon: 'unlock'
     }
   ];
 

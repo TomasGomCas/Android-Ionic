@@ -38,6 +38,7 @@ export class WallPage implements OnInit {
               data[key].text,
               );
             this.messages.push(message); 
+            //this.messages.
         }
         this.loadingController.dismiss();
        },

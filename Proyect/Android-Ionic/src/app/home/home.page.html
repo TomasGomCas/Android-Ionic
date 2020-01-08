@@ -6,6 +6,12 @@
     <ion-title>
       Home
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onclick()">
+        English  {{xxx.english.get("HomeBodyTitle")}} {{hola}}
+        <ion-icon slot="end" name="star"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
